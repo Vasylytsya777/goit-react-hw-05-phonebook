@@ -1,28 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { TransitionGroup } from "react-transition-group";
 import styles from "./ContactList.module.css";
 
 export const ContactList = ({ contacts, deleteContact }) => {
   return (
     <div>
-      <ul className={styles.list}>
-        {contacts.map(({ id, name, number }) => {
-          return (
-            <li className={styles.listItem} key={id}>
-              <h3>{name}:</h3>
-              <p className={styles.contactText}>{number}</p>
-              <button
-                className={styles.deleteButton}
-                type="button"
-                data-id={id}
-                onClick={deleteContact}
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <TransitionGroup className="contactList wrapper">
+        <ul className={styles.list}>
+          {contacts.map(({ id, name, number }) => {
+            return (
+              <li className={styles.listItem} key={id}>
+                <h3>{name}:</h3>
+                <p className={styles.contactText}>{number}</p>
+                <button
+                  className={styles.deleteButton}
+                  type="button"
+                  data-id={id}
+                  onClick={deleteContact}
+                >
+                  Delete
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </TransitionGroup>
     </div>
   );
 };

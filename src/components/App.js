@@ -112,24 +112,54 @@ const App = () => {
     <div className={styles.wrapper}>
       <CSSTransition
         in={alert}
-        timeout={5000}
-        classNames="App-slideIn-title"
+        appear={true}
+        timeout={500}
+        classNames="alertSlide"
+        unmountOnExit
+      >
+        <Notification text={text} />
+      </CSSTransition>
+      <CSSTransition
+        in={true}
+        // appear={true}
+        classNames="titleSlide"
+        timeout={500}
         unmountOnExit
       >
         <h1 className={styles.titlePhonebook}>Phonebook</h1>
       </CSSTransition>
+
       <ContactForm addContact={addContact} />
 
-      {state.contacts.length > 0 && (
-        <div>
+      <div>
+        {state.contacts.length > 0 && (
           <h2 className={styles.titleContacts}>Contacts</h2>
-          <Filter filter={state.filter} onHandleFilter={onHandleFilter} />{" "}
-        </div>
+        )}
+
+        <CSSTransition
+          in={state.contacts.length > 1}
+          classNames="filterSlide"
+          timeout={500}
+          unmountOnExit
+        >
+          <Filter filter={state.filter} onHandleFilter={onHandleFilter} />
+        </CSSTransition>
+      </div>
+
+      {state.contacts.length > 0 && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          classNames="titleSlide"
+          timeout={500}
+          unmountOnExit
+        >
+          <ContactList
+            contacts={getFilteredContact()}
+            deleteContact={deleteContact}
+          />
+        </CSSTransition>
       )}
-      <ContactList
-        contacts={getFilteredContact()}
-        deleteContact={deleteContact}
-      />
     </div>
   );
 };
