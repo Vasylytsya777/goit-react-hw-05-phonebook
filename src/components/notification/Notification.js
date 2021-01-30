@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styles from "./Notification.module.css";
+import styles from "./Notification.module.css";
 
 export const Notification = ({ text }) => {
   return (
-    <div className={Styles.notificationWrapper}>
-      <p className={Styles.alertText}>{text}</p>
+    <div className={styles.notificationWrapper}>
+      <p className={styles.alertText}>{text}</p>
     </div>
   );
 };

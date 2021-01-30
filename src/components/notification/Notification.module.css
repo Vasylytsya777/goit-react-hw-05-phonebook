@@ -16,27 +16,3 @@
   color: white;
   text-align: center;
 }
-.appear {
-  opacity: 0;
-  transform: scale(0.1);
-  transform: translateX(100%);
-}
-
-.appearActive {
-  opacity: 1;
-  transform: translateX(0);
-  transform: scale(1);
-  transition: all 250ms linear;
-}
-
-.exit {
-  opacity: 1;
-  transform: translateX(0);
-  transform: scale(1);
-  transition: all 250ms linear;
-}
-.exitActive {
-  opacity: 0;
-  transform: scale(0.1);
-  transform: translateX(100%);
-}
