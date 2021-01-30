@@ -11,3 +11,11 @@
   font-size: 40px;
   color: rgb(121, 121, 121);
 }
+
+.App-slideIn-title-appear {
+  transform: translateY(-100%);
+}
+.App-slideIn-title-appear-active {
+  transform: translateY(0);
+  transition: transform 5000ms linear;
+}

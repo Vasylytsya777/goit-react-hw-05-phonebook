@@ -1,11 +1,12 @@
 // Хуки
 import React, { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import styles from "./App.module.css";
 import { v4 as uuidv4 } from "uuid";
 import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
-// import { Notification } from "./notifications/Notification";
+import { Notification } from "./notification/Notification";
 
 const App = () => {
   const [state, setState] = useState({
@@ -18,17 +19,17 @@ const App = () => {
     filter: "",
   });
 
-  // const [alert, setAlert] = useState(false);
-  // const [text, setAlertText] = useState("");
+  const [alert, setAlert] = useState(false);
+  const [text, setAlertText] = useState("");
 
-  // componentDidMount() {
-  //   const persistedContacts = localStorage.getItem("contacts");
-  //   if (persistedContacts) {
-  //     this.setState({
-  //       contacts: JSON.parse(persistedContacts),
-  //     });
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.contacts !== this.state.contacts) {
+  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   //   }
   // }
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(state.contacts));
+  }, [state.contacts]);
 
   useEffect(() => {
     const localContacts = localStorage.getItem("contacts");
@@ -39,27 +40,25 @@ const App = () => {
       }));
     }
   }, []);
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  // componentDidMount() {
+  //   const persistedContacts = localStorage.getItem("contacts");
+  //   if (persistedContacts) {
+  //     this.setState({
+  //       contacts: JSON.parse(persistedContacts),
+  //     });
   //   }
   // }
 
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(state.contacts));
-  }, [state.contacts]);
-
-  // const getVisibleAlert = (text) => {
-  //   setAlertText(text);
-  //   setAlert(true);
-  //   setTimeout(() => {
-  //     setAlert(false);
-  //   }, 2000);
-  //   setTimeout(() => {
-  //     setAlertText("");
-  //   }, 2700);
-  // };
+  const getVisibleAlert = (text) => {
+    setAlertText(text);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+    setTimeout(() => {
+      setAlertText("");
+    }, 2700);
+  };
 
   const addContact = (newContacts) => {
     const contact = {
@@ -69,9 +68,9 @@ const App = () => {
     };
 
     if (!newContacts.name.length) {
-      alert("Please, enter your name");
+      getVisibleAlert("Please, enter your name");
     } else if (!newContacts.number.length) {
-      alert("Please, enter your number");
+      getVisibleAlert("Please, enter your number");
     } else {
       if (
         state.contacts.some(
@@ -79,7 +78,7 @@ const App = () => {
             contact.name.toLowerCase() === newContacts.name.toLowerCase()
         )
       ) {
-        alert(`${newContacts.name} is already in contacts.`);
+        getVisibleAlert(`${newContacts.name} is already in contacts.`);
       } else {
         setState((prev) => ({
           ...prev,
@@ -108,10 +107,17 @@ const App = () => {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-
+  // Notification  вставити компонент!!!
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.titlePhonebook}>Phonebook</h1>
+      <CSSTransition
+        in={alert}
+        timeout={5000}
+        classNames="App-slideIn-title"
+        unmountOnExit
+      >
+        <h1 className={styles.titlePhonebook}>Phonebook</h1>
+      </CSSTransition>
       <ContactForm addContact={addContact} />
 
       {state.contacts.length > 0 && (

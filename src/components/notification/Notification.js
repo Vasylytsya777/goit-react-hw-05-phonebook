@@ -5,7 +5,7 @@ import Styles from "./Notification.module.css";
 export const Notification = ({ text }) => {
   return (
     <div className={Styles.NotificationWrapper}>
-      {`${text} is already in Contacts`}
+      <p className={Styles.AlertText}>{text}</p>
     </div>
   );
 };
