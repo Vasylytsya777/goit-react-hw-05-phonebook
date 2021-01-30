@@ -1,36 +1,42 @@
-.NotificationWrapper {
+.notificationWrapper {
   width: 200px;
   text-align: center;
   padding: 25px 10px;
   margin-right: 0px;
-  background-color: rgb(255, 0, 13);
+  background-color: rgb(97, 155, 194);
   color: white;
   position: absolute;
   top: 0;
   right: 50%;
 }
 
-.AlertText {
+.alertText {
+  font-weight: 300;
+  font-size: 20px;
+  color: white;
   text-align: center;
-  font-size: 30px;
-  color: #ffffff;
-  text-shadow: 1px 1px 2px #2f4f4f, 0 0 1em #808080;
 }
 .appear {
   opacity: 0;
+  transform: scale(0.1);
   transform: translateX(100%);
 }
+
 .appearActive {
   opacity: 1;
   transform: translateX(0);
+  transform: scale(1);
   transition: all 250ms linear;
 }
+
 .exit {
   opacity: 1;
   transform: translateX(0);
+  transform: scale(1);
+  transition: all 250ms linear;
 }
 .exitActive {
   opacity: 0;
-  transform: translateX(-100%);
-  transition: all 250ms linear 250ms;
+  transform: scale(0.1);
+  transform: translateX(100%);
 }

@@ -12,48 +12,27 @@
   color: rgb(121, 121, 121);
 }
 
-.App-slideIn-title-appear {
-  transform: translateY(-100%);
-}
-.App-slideIn-title-appear-active {
-  transform: translateY(0);
-  transition: all 250ms linear;
+.appear {
+  opacity: 0;
+  transform: scale(0.1);
+  transform: translateX(-100%);
 }
 
-.alertSlide-enter {
-  transform: translateX(200%);
-}
-.alertSlide-enter-active {
+.appearActive {
+  opacity: 1;
   transform: translateX(0);
+  transform: scale(1);
   transition: all 250ms linear;
 }
-.alertSlide-exit {
+
+.exit {
+  opacity: 1;
   transform: translateX(0);
-}
-.alertSlide-active {
-  transform: translateX(200%);
+  transform: scale(1);
   transition: all 250ms linear;
 }
-
-.titleSlide-appear {
-  transform: translateY(-100%);
-}
-.titleSlide-appear-active {
-  transform: translateY(0);
-  transition: transform 500ms linear;
-}
-
-.filterSlide-enter {
-  transform: scale(0);
-}
-.filterSlide-enter-active {
-  transform: scale(1);
-  transition: transform 500ms ease-in-out;
-}
-.filterSlide-exit {
-  transform: scale(1);
-}
-.filterSlide-exit-active {
-  transform: scale(0);
-  transition: transform 500ms ease-in-out;
+.exitActive {
+  opacity: 0;
+  transform: scale(0.1);
+  transform: translateX(-100%);
 }

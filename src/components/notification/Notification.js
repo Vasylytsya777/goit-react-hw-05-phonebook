@@ -4,8 +4,8 @@ import Styles from "./Notification.module.css";
 
 export const Notification = ({ text }) => {
   return (
-    <div className={Styles.NotificationWrapper}>
-      <p className={Styles.AlertText}>{text}</p>
+    <div className={Styles.notificationWrapper}>
+      <p className={Styles.alertText}>{text}</p>
     </div>
   );
 };

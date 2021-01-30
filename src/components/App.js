@@ -113,17 +113,17 @@ const App = () => {
       <CSSTransition
         in={alert}
         appear={true}
-        timeout={500}
-        classNames="alertSlide"
+        timeout={250}
+        classNames={styles}
         unmountOnExit
       >
         <Notification text={text} />
       </CSSTransition>
       <CSSTransition
         in={true}
-        // appear={true}
-        classNames="titleSlide"
-        timeout={500}
+        appear={true}
+        classNames={styles}
+        timeout={250}
         unmountOnExit
       >
         <h1 className={styles.titlePhonebook}>Phonebook</h1>
@@ -138,8 +138,8 @@ const App = () => {
 
         <CSSTransition
           in={state.contacts.length > 1}
-          classNames="filterSlide"
-          timeout={500}
+          classNames={styles}
+          timeout={250}
           unmountOnExit
         >
           <Filter filter={state.filter} onHandleFilter={onHandleFilter} />
@@ -150,8 +150,8 @@ const App = () => {
         <CSSTransition
           in={true}
           appear={true}
-          classNames="titleSlide"
-          timeout={500}
+          classNames={styles}
+          timeout={250}
           unmountOnExit
         >
           <ContactList

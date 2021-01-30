@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TransitionGroup } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styles from "./ContactList.module.css";
 
 export const ContactList = ({ contacts, deleteContact }) => {
   return (
     <div>
-      <TransitionGroup className="contactList wrapper">
-        <ul className={styles.list}>
-          {contacts.map(({ id, name, number }) => {
-            return (
+      <TransitionGroup component="ul" className={styles.list}>
+        {contacts.map(({ id, name, number }) => {
+          return (
+            <CSSTransition key={id} timeout={250} classNames={styles}>
               <li className={styles.listItem} key={id}>
                 <h3>{name}:</h3>
                 <p className={styles.contactText}>{number}</p>
@@ -22,9 +22,9 @@ export const ContactList = ({ contacts, deleteContact }) => {
                   Delete
                 </button>
               </li>
-            );
-          })}
-        </ul>
+            </CSSTransition>
+          );
+        })}
       </TransitionGroup>
     </div>
   );
